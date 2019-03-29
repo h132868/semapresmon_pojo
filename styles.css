@@ -1,0 +1,198 @@
+.red {color:red}
+.orange {color:orange}
+.green {color:green}
+
+body {
+    background: #20262E;
+    padding: 20px;
+    font-family: Helvetica;
+}
+
+.sensor_container {
+    background: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    font-size: 25px;
+    text-align: center;
+    transition: all 0.2s;
+    margin: 0 auto;
+    width: 700px;
+}
+
+#locale-title {
+    font-size: 30px;
+}
+
+button {
+    background: #0084ff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 14px;
+    font-size: 15px;
+    color: #fff;
+}
+
+#banner-message.alt {
+    background: #0084ff;
+    color: #fff;
+    margin-top: 40px;
+    width: 200px;
+}
+
+#banner-message.alt button {
+    background: #fff;
+    color: #000;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+//border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    padding: 5px 0;
+    border-radius: 6px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 105%;
+}
+
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+#sensor0 {
+    display: none;
+}
+
+#sensor1 {
+    display: none;
+}
+
+#sensor2 {
+    display: none;
+}
+
+#sensor3 {
+    display: none;
+}
+
+#sensor4 {
+    display: none;
+}
+
+#sensor5 {
+    display: none;
+}
+
+#sensor6 {
+    display: none;
+}
+
+#sensor7 {
+    display: none;
+}
+
+#sensor8 {
+    display: none;
+}
+
+#sensor9 {
+    display: none;
+}
+
+#sensor10 {
+    display: none;
+}
+
+#sensor11 {
+    display: none;
+}
+
+#sensor12 {
+    display: none;
+}
+
+#sensor13 {
+    display: none;
+}
+
+#sensor14 {
+    display: none;
+}
+
+#sensor15 {
+    display: none;
+}
+
+#sensor16 {
+    display: none;
+}
+
+#sensor17 {
+    display: none;
+}
+
+#sensor18 {
+    display: none;
+}
+
+#sensor19 {
+    display: none;
+}
+
+#sensor20 {
+    display: none;
+}
+
+#sensor21 {
+    display: none;
+}
+
+#sensor22 {
+    display: none;
+}
+
+#sensor23 {
+    display: none;
+}
+
+#sensor24 {
+    display: none;
+}
+
+#sensor25 {
+    display: none;
+}
+
+#sensor26 {
+    display: none;
+}
+
+#sensor27 {
+    display: none;
+}
+
+#sensor28 {
+    display: none;
+}
+
+#sensor29 {
+    display: none;
+}
+
+
