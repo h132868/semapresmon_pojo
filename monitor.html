@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Sematek Pontongtrykk</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-1.7.2.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
-    <script src="app.js"></script>
+  <meta charset="UTF-8">
+  <title>Sematek Pontongtrykk</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://code.jquery.com/jquery-1.7.2.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
+  <script src="app.js"></script>
 
 </head>
 <body>
@@ -14,49 +14,174 @@
 <div id="wrapper" class="sensor_container">
   <h1 id ="locale-title" ></h1>
   <h5>Trykkmålinger levert av Sematek AS</h5>
+
+  <div id="sensor_flex">
+    <div id=sensor_list">
+      <p>Live-målinger</p>
   <span class="tooltip" >
   <p data-sensordata="true" class="tooltip" id="sensor0">sensor 0</p>
       <p class="tooltiptext" id="sensor0_t">tooltip text!</p>
   </span>
-    <br>
-    <span class="tooltip">
+  <br>
+  <span class="tooltip">
   <p data-sensordata="true" id="sensor1">sensor 1</p>
     <p class="tooltiptext" id="sensor1_t">tooltip text!</p>
   </span>
-    <br>
-    <span class="tooltip">
-  <p data-sensordata="true" id="sensor2">sensor 2</p>
-      <p class="tooltiptext" id="sensor2_t">tooltip text!</p>
+  <br>
+  <span class="tooltip">
+  <p data-sensordata="true" id="sensor3">sensor 3</p>
+      <p class="tooltiptext" id="sensor3_t">tooltip text!</p>
   </span>
-    <br>
-    <p data-sensordata="true" id="sensor3">sensor 3</p>
-    <p data-sensordata="true" id="sensor4">sensor 4</p>
-    <p data-sensordata="true" id="sensor5">sensor 5</p>
-    <p data-sensordata="true" id="sensor6">sensor 6</p>
-    <p data-sensordata="true" id="sensor7">sensor 7</p>
-    <p data-sensordata="true" id="sensor8">sensor 8</p>
-    <p data-sensordata="true" id="sensor9">sensor 9</p>
-    <p data-sensordata="true" id="sensor10">sensor 10</p>
-    <p data-sensordata="true" id="sensor11">sensor 11</p>
-    <p data-sensordata="true" id="sensor12">sensor 12</p>
-    <p data-sensordata="true" id="sensor13">sensor 13</p>
-    <p data-sensordata="true" id="sensor14">sensor 14</p>
-    <p data-sensordata="true" id="sensor15">sensor 15</p>
-    <p data-sensordata="true" id="sensor16">sensor 16</p>
-    <p data-sensordata="true" id="sensor17">sensor 17</p>
-    <p data-sensordata="true" id="sensor18">sensor 18</p>
-    <p data-sensordata="true" id="sensor19">sensor 19</p>
-    <p data-sensordata="true" id="sensor20">sensor 20</p>
-    <p data-sensordata="true" id="sensor21">sensor 21</p>
-    <p data-sensordata="true" id="sensor22">sensor 22</p>
-    <p data-sensordata="true" id="sensor23">sensor 23</p>
-    <p data-sensordata="true" id="sensor24">sensor 24</p>
-    <p data-sensordata="true" id="sensor25">sensor 25</p>
-    <p data-sensordata="true" id="sensor26">sensor 26</p>
-    <p data-sensordata="true" id="sensor27">sensor 27</p>
-    <p data-sensordata="true" id="sensor28">sensor 28</p>
-    <p data-sensordata="true" id="sensor29">sensor 29</p>
+  <br>
+      <span class="tooltip">
+  <p data-sensordata="true" id="sensor4">sensor 4</p>
+      <p class="tooltiptext" id="sensor4_t">tooltip text!</p>
+  </span>
+      <br>
+      <span class="tooltip">
+  <p data-sensordata="true" id="sensor5">sensor 5</p>
+      <p class="tooltiptext" id="sensor5_t">tooltip text!</p>
+  </span>
+      <br>
+      <span class="tooltip">
+  <p data-sensordata="true" id="sensor6">sensor 6</p>
+      <p class="tooltiptext" id="sensor6_t">tooltip text!</p>
+  </span>
+      <br>
+      <span class="tooltip">
+  <p data-sensordata="true" id="sensor7">sensor 7</p>
+      <p class="tooltiptext" id="sensor7_t">tooltip text!</p>
+  </span>
+      <br>
+      <span class="tooltip">
+  <p data-sensordata="true" id="sensor8">sensor 8</p>
+      <p class="tooltiptext" id="sensor8_t">tooltip text!</p>
+  </span>
+      <br>
+      <span class="tooltip">
+  <p data-sensordata="true" id="sensor9">sensor 9</p>
+      <p class="tooltiptext" id="sensor9_t">tooltip text!</p>
+  </span>
+      <br>  <span class="tooltip">
+  <p data-sensordata="true" id="sensor10">sensor 10</p>
+      <p class="tooltiptext" id="sensor10_t">tooltip text!</p>
+  </span>
+      <br>  <span class="tooltip">
+  <p data-sensordata="true" id="sensor11">sensor 11</p>
+      <p class="tooltiptext" id="sensor11_t">tooltip text!</p>
+  </span>
+      <br>  <span class="tooltip">
+  <p data-sensordata="true" id="sensor12">sensor 12</p>
+      <p class="tooltiptext" id="sensor12_t">tooltip text!</p>
+  </span>
+      <br>
+      <span class="tooltip">
+  <p data-sensordata="true" id="sensor13">sensor 13</p>
+      <p class="tooltiptext" id="sensor13_t">tooltip text!</p>
+  </span>
+      <br>  <span class="tooltip">
+  <p data-sensordata="true" id="sensor13">sensor 13</p>
+      <p class="tooltiptext" id="sensor13_t">tooltip text!</p>
+  </span>
+      <br>
+        <span class="tooltip">
+  <p data-sensordata="true" id="sensor14">sensor 14</p>
+      <p class="tooltiptext" id="sensor14_t">tooltip text!</p>
+  </span>
+        <br>
+        <span class="tooltip">
+  <p data-sensordata="true" id="sensor15">sensor 15</p>
+      <p class="tooltiptext" id="sensor15_t">tooltip text!</p>
+  </span>
+        <br>
 
+
+
+
+<!--
+  <p data-sensordata="true" id="sensor3">sensor 3</p>
+  <p data-sensordata="true" id="sensor4">sensor 4</p>
+  <p data-sensordata="true" id="sensor5">sensor 5</p>
+  <p data-sensordata="true" id="sensor6">sensor 6</p>
+  <p data-sensordata="true" id="sensor7">sensor 7</p>
+  <p data-sensordata="true" id="sensor8">sensor 8</p>
+  <p data-sensordata="true" id="sensor9">sensor 9</p>
+  <p data-sensordata="true" id="sensor10">sensor 10</p>
+  <p data-sensordata="true" id="sensor11">sensor 11</p>
+  <p data-sensordata="true" id="sensor12">sensor 12</p>
+  <p data-sensordata="true" id="sensor13">sensor 13</p>
+  <p data-sensordata="true" id="sensor14">sensor 14</p>
+  <p data-sensordata="true" id="sensor15">sensor 15</p>
+  <p data-sensordata="true" id="sensor16">sensor 16</p>
+  <p data-sensordata="true" id="sensor17">sensor 17</p>
+  <p data-sensordata="true" id="sensor18">sensor 18</p>
+  <p data-sensordata="true" id="sensor19">sensor 19</p>
+  <p data-sensordata="true" id="sensor20">sensor 20</p>
+  <p data-sensordata="true" id="sensor21">sensor 21</p>
+  <p data-sensordata="true" id="sensor22">sensor 22</p>
+  <p data-sensordata="true" id="sensor23">sensor 23</p>
+  <p data-sensordata="true" id="sensor24">sensor 24</p>
+  <p data-sensordata="true" id="sensor25">sensor 25</p>
+  <p data-sensordata="true" id="sensor26">sensor 26</p>
+  <p data-sensordata="true" id="sensor27">sensor 27</p>
+  <p data-sensordata="true" id="sensor28">sensor 28</p>
+  <p data-sensordata="true" id="sensor29">sensor 29</p>
+-->
+  </div>
+  <div id="sensor_map">
+
+    <div id="sensor0_ind">
+      ⚫
+    </div>
+    <div id="sensor1_ind">
+      ⚫
+    </div>
+    <div id="sensor2_ind">
+      ⚫
+    </div>
+    <div id="sensor3_ind">
+      ⚫
+    </div>
+    <div id="sensor4_ind">
+      ⚫
+    </div>
+    <div id="sensor5_ind">
+      ⚫
+    </div>
+    <div id="sensor6_ind">
+      ⚫
+    </div>
+    <div id="sensor7_ind">
+      ⚫
+    </div>
+    <div id="sensor8_ind">
+      ⚫
+    </div>
+    <div id="sensor9_ind">
+      ⚫
+    </div>
+    <div id="sensor10_ind">
+      ⚫
+    </div>
+    <div id="sensor11_ind">
+      ⚫
+    </div>
+    <div id="sensor12_ind">
+      ⚫
+    </div>
+    <div id="sensor13_ind">
+      ⚫
+    </div>
+    <div id="sensor14_ind">
+      ⚫
+    </div>
+    <div id="sensor15_ind">
+      ⚫
+    </div>
+
+  </div>
+</div>
+</div>
 </div>
 </body>
 </html>

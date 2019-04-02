@@ -3,20 +3,36 @@
 .green {color:green}
 
 body {
-    background: #20262E;
+    background: #fff;
     padding: 20px;
     font-family: Helvetica;
 }
 
 .sensor_container {
-    background: #fff;
-    border-radius: 4px;
+    background: #d8d8d8;
+    border-radius: 20px;
     padding: 20px;
     font-size: 25px;
     text-align: center;
     transition: all 0.2s;
     margin: 0 auto;
     width: 700px;
+}
+
+#sensor_flex {
+    display: flex;
+    justify-content: center;
+    height : 1100px;
+
+
+}
+
+#sensor_list {
+    flex: 1;
+    justify-content: center;
+}
+#sensor_map {
+    flex: 1;
 }
 
 #locale-title {
@@ -195,4 +211,95 @@ button {
     display: none;
 }
 
+#sensor_map {
+    position:relative;
+    left: 50%;
+}
+#sensor0_ind {
+    top:  20px;
+    left: -100px;
+    position: absolute;
 
+}
+#sensor1_ind {
+    top:  20px;
+    left: 100px;
+    position:absolute;
+}
+#sensor2_ind {
+    top:  220px;
+    left: -100px;
+    position: absolute;
+
+}
+#sensor3_ind {
+    top:  220px;
+    left: 100px;
+    position:absolute;
+}
+#sensor4_ind {
+    top:  270px;
+    left: -100px;
+    position: absolute;
+
+}
+#sensor5_ind {
+    top:  270px;
+    left: 100px;
+    position:absolute;
+}
+#sensor6_ind {
+    top:  470px;
+    left: -100px;
+    position: absolute;
+
+}
+#sensor7_ind {
+    top:  470px;
+    left: 100px;
+    position:absolute;
+}
+#sensor8_ind {
+    top:  520px;
+    left: -100px;
+    position: absolute;
+
+}
+#sensor9_ind {
+    top:  520px;
+    left: 100px;
+    position:absolute;
+}
+#sensor10_ind {
+    top:  720px;
+    left: -100px;
+    position: absolute;
+
+}
+#sensor11_ind {
+    top:  720px;
+    left: 100px;
+    position:absolute;
+}
+#sensor12_ind {
+    top:  770px;
+    left: -100px;
+    position: absolute;
+
+}
+#sensor13_ind {
+    top:  770px;
+    left: 100px;
+    position:absolute;
+}
+#sensor14_ind {
+    top:  970px;
+    left: -100px;
+    position: absolute;
+
+}
+#sensor15_ind {
+    top:  970px;
+    left: 100px;
+    position:absolute;
+}

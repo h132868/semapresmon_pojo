@@ -72,7 +72,7 @@ function onMessageArrived(message) {
 
     $("#sensor" + sensorNumber + "_t").html("Avlesningstidspunkt: " +gotJSON[sensorNumber].reading.time);
     $("#sensor" + sensorNumber).html("Sensor " + sensorNumber + ": " +gotJSON[sensorNumber].reading.val + " kPa");
-    $("#sensor" + sensorNumber).css("display","block")
+    $("#sensor" + sensorNumber).css("display","flex")
 
     if (gotJSON[sensorNumber].reading.val < 98) {
         $("#sensor" + sensorNumber).css("color", "green");
