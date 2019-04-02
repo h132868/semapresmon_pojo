@@ -2,35 +2,54 @@
 .orange {color:orange}
 .green {color:green}
 
+:root {
+    --offset_top: 100px;
+    --offset_left: 100px;
+    --led_offset_top : calc(var(--offset_top) - 75px);
+}
+
+
+
+
 body {
-    background: #fff;
+    background: white;
     padding: 20px;
-    font-family: Helvetica;
+    font-family: "Comic Sans MS";
 }
 
 .sensor_container {
-    background: #d8d8d8;
+    background: cornflowerblue;
     border-radius: 20px;
-    padding: 20px;
-    font-size: 25px;
+    font-size: 18px;
     text-align: center;
     transition: all 0.2s;
     margin: 0 auto;
     width: 700px;
+    padding: 20px 20px 20px;
 }
+
+#header {
+    padding-bottom: 50px;
+}
+
 
 #sensor_flex {
     display: flex;
-    justify-content: center;
-    height : 1100px;
-
-
+    height : 1200px;
+    justify-content: space-evenly;
 }
 
 #sensor_list {
     flex: 1;
     justify-content: center;
+    padding:auto;
+    max-width: 300px;
 }
+
+.spacer {
+    flex-grow: 1;
+}
+
 #sensor_map {
     flex: 1;
 }
@@ -63,7 +82,7 @@ button {
 /* Tooltip container */
 .tooltip {
     position: relative;
-    display: inline-block;
+    display: block;
 //border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
 
@@ -91,215 +110,266 @@ button {
     visibility: visible;
 }
 
-#sensor0 {
-    display: none;
+.sensor0 {
+    display: flex;
 }
 
-#sensor1 {
-    display: none;
+.sensor1 {
+    display: flex;
 }
 
-#sensor2 {
-    display: none;
+.sensor2 {
+    display: flex;
 }
 
-#sensor3 {
-    display: none;
+.sensor3 {
+    display: flex;
 }
 
-#sensor4 {
-    display: none;
+.sensor4 {
+    display: flex;
 }
 
-#sensor5 {
-    display: none;
+.sensor5 {
+    display: flex;
 }
 
-#sensor6 {
-    display: none;
+.sensor6 {
+    display: flex;
 }
 
-#sensor7 {
-    display: none;
+.sensor7 {
+    display: flex;
 }
 
-#sensor8 {
-    display: none;
+.sensor8 {
+    display: flex;
 }
 
-#sensor9 {
-    display: none;
+.sensor9 {
+    display: flex;
 }
 
-#sensor10 {
-    display: none;
+.sensor10 {
+    display: flex;
 }
 
-#sensor11 {
-    display: none;
+.sensor11 {
+    display: flex;
 }
 
-#sensor12 {
-    display: none;
+.sensor12 {
+    display: flex;
 }
 
-#sensor13 {
-    display: none;
+.sensor13 {
+    display: flex;
 }
 
-#sensor14 {
-    display: none;
+.sensor14 {
+    display: flex;
 }
 
-#sensor15 {
-    display: none;
+.sensor15 {
+    display: flex;
 }
 
-#sensor16 {
-    display: none;
+.sensor16 {
+    display: flex;
 }
 
-#sensor17 {
-    display: none;
+.sensor17 {
+    display: flex;
 }
 
-#sensor18 {
-    display: none;
+.sensor18 {
+    display: flex;
 }
 
-#sensor19 {
-    display: none;
+.sensor19 {
+    display: flex;
 }
 
-#sensor20 {
-    display: none;
+.sensor20 {
+    display: flex;
 }
 
-#sensor21 {
-    display: none;
+.sensor21 {
+    display: flex;
 }
 
-#sensor22 {
-    display: none;
+.sensor22 {
+    display: flex;
 }
 
-#sensor23 {
-    display: none;
+.sensor23 {
+    display: flex;
 }
 
-#sensor24 {
-    display: none;
+.sensor24 {
+    display: flex;
 }
 
-#sensor25 {
-    display: none;
+.sensor25 {
+    display: flex;
 }
 
-#sensor26 {
-    display: none;
+.sensor26 {
+    display: flex;
 }
 
-#sensor27 {
-    display: none;
+.sensor27 {
+    display: flex;
 }
 
-#sensor28 {
-    display: none;
+.sensor28 {
+    display: flex;
 }
 
-#sensor29 {
-    display: none;
+.sensor29 {
+    display: flex;
 }
 
 #sensor_map {
     position:relative;
-    left: 50%;
 }
 #sensor0_ind {
-    top:  20px;
-    left: -100px;
+    top:  calc(var(--led_offset_top) + 0px);
+    left: 0px;
     position: absolute;
+    z-index: 2;
 
 }
 #sensor1_ind {
-    top:  20px;
-    left: 100px;
+    top:  calc(var(--led_offset_top) + 0px);
+    left: 200px;
     position:absolute;
+    z-index: 2;
 }
 #sensor2_ind {
-    top:  220px;
-    left: -100px;
+    top:  calc(var(--led_offset_top) + 200px);
+    left: 0px;
     position: absolute;
+    z-index: 2;
 
 }
 #sensor3_ind {
-    top:  220px;
-    left: 100px;
+    top:  calc(var(--led_offset_top) + 200px);
+    left: 200px;
     position:absolute;
+    z-index: 2;
 }
 #sensor4_ind {
-    top:  270px;
-    left: -100px;
+    top:  calc(var(--led_offset_top) + 250px);
+    left: 0px;
     position: absolute;
+    z-index: 2;
 
 }
 #sensor5_ind {
-    top:  270px;
-    left: 100px;
+    top:  calc(var(--led_offset_top) + 250px);
+    left: 200px;
     position:absolute;
+    z-index: 2;
 }
 #sensor6_ind {
-    top:  470px;
-    left: -100px;
+    top:  calc(var(--led_offset_top) + 450px);
+    left: 0px;
     position: absolute;
+    z-index: 2;
 
 }
 #sensor7_ind {
-    top:  470px;
-    left: 100px;
+    top:  calc(var(--led_offset_top) + 450px);
+    left: 200px;
     position:absolute;
+    z-index: 2;
 }
 #sensor8_ind {
-    top:  520px;
-    left: -100px;
+    top:  calc(var(--led_offset_top) + 500px);
+    left: 0px;
     position: absolute;
+    z-index: 2;
 
 }
 #sensor9_ind {
-    top:  520px;
-    left: 100px;
+    top:  calc(var(--led_offset_top) + 500px);
+    left: 200px;
     position:absolute;
+    z-index: 2;
 }
 #sensor10_ind {
-    top:  720px;
-    left: -100px;
+    top:  calc(var(--led_offset_top) + 700px);
+    left: 0px;
     position: absolute;
+    z-index: 2;
 
 }
 #sensor11_ind {
-    top:  720px;
-    left: 100px;
+    top:  calc(var(--led_offset_top) + 700px);
+    left: 200px;
     position:absolute;
+    z-index: 2;
 }
 #sensor12_ind {
-    top:  770px;
-    left: -100px;
+    top:  calc(var(--led_offset_top) + 750px);
+    left: 0px;
     position: absolute;
+    z-index: 2;
 
 }
 #sensor13_ind {
-    top:  770px;
-    left: 100px;
+    top:  calc(var(--led_offset_top) + 750px);
+    left: 200px;
     position:absolute;
+    z-index: 2;
 }
 #sensor14_ind {
-    top:  970px;
-    left: -100px;
+    top:  calc(var(--led_offset_top) + 950px);
+    left: 0px;
     position: absolute;
+    z-index: 2;
 
 }
 #sensor15_ind {
-    top:  970px;
-    left: 100px;
+    top:  calc(var(--led_offset_top) + 950px);
+    left: 200px;
     position:absolute;
+    justify-content: left;
+    z-index: 2;
+}
+.dot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+}
+
+#frame1 {
+    top:calc(var(--offset_top) + 750px);
+    left:12px;
+    z-index: 0;
+    position:absolute;
+
+}
+#frame2 {
+    top:calc(var(--offset_top) + 500px);
+    left:12px;
+    z-index: 0;
+    position:absolute;
+
+}
+#frame3 {
+    top:calc(var(--offset_top) + 250px);
+    left:12px;
+    z-index: 0;
+    position:absolute;
+
+}
+#frame4 {
+    top:calc(var(--offset_top) + 0px);
+    left:12px;
+    z-index: 0;
+    position:absolute;
+
 }

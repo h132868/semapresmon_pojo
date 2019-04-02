@@ -71,15 +71,17 @@ function onMessageArrived(message) {
     console.log(gotJSON[sensorNumber].topic);
 
     $("#sensor" + sensorNumber + "_t").html("Avlesningstidspunkt: " +gotJSON[sensorNumber].reading.time);
+    $("#sensor" + sensorNumber + "_t2").html("Avlesningstidspunkt: " +gotJSON[sensorNumber].reading.time);
+    $(".sensor" + sensorNumber).css("display","flex")
     $("#sensor" + sensorNumber).html("Sensor " + sensorNumber + ": " +gotJSON[sensorNumber].reading.val + " kPa");
-    $("#sensor" + sensorNumber).css("display","flex")
+    $(".sensor" + sensorNumber).css("display","flex")
 
     if (gotJSON[sensorNumber].reading.val < 98) {
-        $("#sensor" + sensorNumber).css("color", "green");
+        $(".sensor" + sensorNumber).css("background-color", "green");
     } else if (gotJSON[sensorNumber].reading.val < 101) {
-        $("#sensor" + sensorNumber).css("color", "yellow");
+        $(".sensor" + sensorNumber).css("background-color", "yellow");
     } else {
-        $("#sensor" + sensorNumber).css("color", "red");
+        $(".sensor" + sensorNumber).css("background-color", "red");
     }
 
 
