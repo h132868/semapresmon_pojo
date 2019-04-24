@@ -4,173 +4,174 @@
   <meta charset="UTF-8">
   <title>Sematek Pontongtrykk</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://s3.amazonaws.com/stitch-sdks/js/bundles/4.3.1/stitch.js"></script>
   <script src="https://code.jquery.com/jquery-1.7.2.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
   <script src="app.js"></script>
-
+  <script src="https://code.highcharts.com/highcharts.js"></script>
 </head>
 <body>
+<div id="foreground" class="all-content">
+<div id="header">
+    <img src="images/logo.png" alt="logo" width="50%">
+</div>
+<div id="wrapper" class="flex-container">
 
-<div id="wrapper" class="sensor_container">
-    <div id="header">
-  <h1 id ="locale-title" ></h1>
-  <h3>Trykkmålinger levert av Sematek AS</h3>
-    </div>
-  <div id="sensor_flex">
-    <div id="sensor_list">
+  <div id="sensor-flex-container">
+    <div id="sensor-list">
       <h3>Live-målinger</h3>
   <span class="tooltip" >
-  <p id="sensor0" class="sensor0">Sensor 0  : ingen data</p>
-      <p class="tooltiptext" id="sensor0_t">placeholder text</p>
+  <p id="s0" class="sensors s0">Sensor 0  : ingen data</p>
+      <p class="tooltiptext" id="s0-t1"></p>
   </span>
   <span class="tooltip">
-  <p id="sensor1" class="sensor1">Sensor 1  : ingen data</p>
-    <p class="tooltiptext" id="sensor1_t">placeholder text</p>
+  <p id="s1" class="sensors s1">Sensor 1  : ingen data</p>
+    <p class="tooltiptext" id="s1-t1"></p>
   </span>
         <span class="tooltip">
-  <p id="sensor2" class="sensor2">Sensor 2  : ingen data</p>
-    <p class="tooltiptext" id="sensor2_t">placeholder text</p>
+  <p id="s2" class="sensors s2">Sensor 2  : ingen data</p>
+    <p class="tooltiptext" id="s2-t1"></p>
   </span>
 
   <span class="tooltip">
-  <p id="sensor3" class="sensor3">Sensor 3  : ingen data</p>
-      <p class="tooltiptext" id="sensor3_t">placeholder text</p>
+  <p id="s3" class="sensors s3">Sensor 3  : ingen data</p>
+      <p class="tooltiptext" id="s3-t1"></p>
   </span>
 
       <span class="tooltip">
-  <p id="sensor4" class="sensor4">Sensor 4  : ingen data</p>
-      <p class="tooltiptext" id="sensor4_t">placeholder text</p>
+  <p id="s4" class="sensors s4">Sensor 4  : ingen data</p>
+      <p class="tooltiptext" id="s4-t1"></p>
   </span>
 
       <span class="tooltip">
-  <p id="sensor5" class="sensor5">Sensor 5  : ingen data</p>
-      <p class="tooltiptext" id="sensor5_t">placeholder text</p>
+  <p id="s5" class="sensors s5">Sensor 5  : ingen data</p>
+      <p class="tooltiptext" id="s5-t1"></p>
   </span>
 
       <span class="tooltip">
-  <p id="sensor6" class="sensor6">Sensor 6  : ingen data</p>
-      <p class="tooltiptext" id="sensor6_t">placeholder text</p>
+  <p id="s6" class="sensors s6">Sensor 6  : ingen data</p>
+      <p class="tooltiptext" id="s6-t1"></p>
   </span>
 
       <span class="tooltip">
-  <p id="sensor7" class="sensor7">Sensor 7  : ingen data</p>
-      <p class="tooltiptext" id="sensor7_t">placeholder text</p>
+  <p id="s7" class="sensors s7">Sensor 7  : ingen data</p>
+      <p class="tooltiptext" id="s7-t1"></p>
   </span>
 
       <span class="tooltip">
-  <p id="sensor8" class="sensor8">Sensor 8  : ingen data</p>
-      <p class="tooltiptext" id="sensor8_t">placeholder text</p>
+  <p id="s8" class="sensors s8">Sensor 8  : ingen data</p>
+      <p class="tooltiptext" id="s8-t1"></p>
   </span>
 
       <span class="tooltip">
-  <p id="sensor9" class="sensor9">Sensor 9  : ingen data</p>
-      <p class="tooltiptext" id="sensor9_t">placeholder text</p>
+  <p id="s9" class="sensors s9">Sensor 9  : ingen data</p>
+      <p class="tooltiptext" id="s9-t1"></p>
   </span>
         <span class="tooltip">
-  <p id="sensor10" class="sensor10">Sensor 10: ingen data</p>
-      <p class="tooltiptext" id="sensor10_t">placeholder text</p>
+  <p id="s10" class="sensors s10">Sensor 10: ingen data</p>
+      <p class="tooltiptext" id="s10-t1"></p>
   </span>
         <span class="tooltip">
-  <p id="sensor11" class="sensor11">Sensor 11: ingen data</p>
-      <p class="tooltiptext" id="sensor11_t">placeholder text</p>
+  <p id="s11" class="sensors s11">Sensor 11: ingen data</p>
+      <p class="tooltiptext" id="s11-t1"></p>
   </span>
         <span class="tooltip">
-  <p id="sensor12" class="sensor12">Sensor 12: ingen data</p>
-      <p class="tooltiptext" id="sensor12_t">placeholder text</p>
+  <p id="s12" class="sensors s12">Sensor 12: ingen data</p>
+      <p class="tooltiptext" id="s12-t1"></p>
   </span>
         <span class="tooltip">
-  <p id="sensor13" class="sensor13">Sensor 13: ingen data</p>
-      <p class="tooltiptext" id="sensor13_t">placeholder text</p>
-  </span>
-
-        <span class="tooltip">
-  <p id="sensor14" class="sensor13">Sensor 14: ingen data</p>
-      <p class="tooltiptext" id="sensor14_t">placeholder text</p>
+  <p id="s13" class="sensors s13">Sensor 13: ingen data</p>
+      <p class="tooltiptext" id="s13-t1"></p>
   </span>
 
         <span class="tooltip">
-  <p id="sensor15" class="sensor13">Sensor 15: ingen data</p>
-      <p class="tooltiptext" id="sensor15_t">placeholder text</p>
+  <p id="s14" class="sensors s14">Sensor 14: ingen data</p>
+      <p class="tooltiptext" id="s14-t1"></p>
+  </span>
+
+        <span class="tooltip">
+  <p id="s15" class="sensors s15">Sensor 15: ingen data</p>
+      <p class="tooltiptext" id="s15-t1"></p>
   </span>
 
   </div>
 
-  <div id="spacer" class="spacer"></div>
-
-  <div id="sensor_map">
+  <div id="sensor-map">
       <h3>Oversikt</h3>
+      <div class="frame">
+        <img src="images/frame.png" class="frame frame-image" alt="ramme">
+        <span class="s0 s0-m tooltip  dot">
+            <p class="tooltiptext" id="s0-t2"></p>
+        </span>
+            <span class="s1 s1-m tooltip dot ">
+            <p class="tooltiptext" id="s1-t2"></p>
+        </span>
+            <span class="s2 s2-m tooltip  dot">
+            <p class="tooltiptext" id="s2-t2"></p>
+        </span>
+            <span class="s3 s3-m tooltip  dot">
+            <p class="tooltiptext" id="s3-t2"></p>
+        </span>
+      </div>
 
-      <span class="tooltip">
-    <div id="sensor0_ind" class="sensor0 dot"></div>
-      <p class="tooltiptext" id="sensor0_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor1_ind" class="sensor1 dot"></div>
-      <p class="tooltiptext" id="sensor1_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor2_ind" class="sensor2 dot"></div>
-      <p class="tooltiptext" id="sensor2_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor3_ind" class="sensor3 dot"></div>
-      <p class="tooltiptext" id="sensor3_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor4_ind" class="sensor4 dot"></div>
-      <p class="tooltiptext" id="sensor4_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor5_ind" class="sensor5 dot"></div>
-      <p class="tooltiptext" id="sensor5_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor6_ind" class="sensor6 dot"></div>
-      <p class="tooltiptext" id="sensor6_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor7_ind" class="sensor7 dot"></div>
-      <p class="tooltiptext" id="sensor7_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor8_ind" class="sensor8 dot"></div>
-      <p class="tooltiptext" id="sensor8_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor9_ind" class="sensor9 dot"></div>
-      <p class="tooltiptext" id="sensor9_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor10_ind" class="sensor10 dot"></div>
-      <p class="tooltiptext" id="sensor10_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor11_ind" class="sensor11 dot"></div>
-      <p class="tooltiptext" id="sensor11_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor12_ind" class="sensor12 dot"></div>
-      <p class="tooltiptext" id="sensor12_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor13_ind" class="sensor13 dot"></div>
-      <p class="tooltiptext" id="sensor13_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor14_ind" class="sensor14 dot"></div>
-      <p class="tooltiptext" id="sensor14_t2">placeholder text</p>
-      </span>
-      <span class="tooltip">
-    <div id="sensor15_ind" class="sensor15 dot"></div>
-      <p class="tooltiptext" id="sensor15_t2">placeholder text</p>
-      </span>
-      <img src="images/frame.png" alt="Ramme 4" id="frame4" >
-      <img src="images/frame.png" alt="Ramme 3" id="frame3"'>
-      <img src="images/frame.png" alt="Ramme 2" id="frame2">
-      <img src="images/frame.png" alt="Ramme 1" id="frame1">
+      <div class="frame">
+          <img src="images/frame.png" class="frame frame-image" alt="ramme">
+          <span class="s4 s0-m tooltip dot">
+            <p class="tooltiptext" id="s4-t2"></p>
+          </span>
+          <span class="s5 s1-m tooltip dot">
+            <p class="tooltiptext" id="s5-t2"></p>
+          </span>
+          <span class="s6 s2-m tooltip dot">
+            <p class="tooltiptext" id="s6-t2"></p>
+          </span>
+          <span class="s7 s3-m tooltip dot">
+            <p class="tooltiptext" id="s7-t2"></p>
+          </span>
+      </div>
+      <div class="frame">
+          <img src="images/frame.png" class="frame frame-image" alt="ramme">
+          <span class="s8 s0-m tooltip dot">
+            <p class="tooltiptext" id="s8-t2"></p>
+          </span>
+          <span class="s9 s1-m tooltip dot">
+            <p class="tooltiptext" id="s9-t2"></p>
+          </span>
+          <span class="s10 s2-m tooltip dot">
+            <p class="tooltiptext" id="s10-t2"></p>
+          </span>
+          <span class="s11 s3-m tooltip dot">
+            <p class="tooltiptext" id="s11-t2"></p>
+          </span>
+      </div>
+      <div class="frame">
+          <img src="images/frame.png" class="frame frame-image" alt="ramme">
+          <span class="s12 s0-m tooltip dot">
+            <p class="tooltiptext" id="s12-t2"></p>
+          </span>
+          <span class="s13 s1-m tooltip dot">
+            <p class="tooltiptext" id="s13-t2"></p>
+          </span>
+          <span class="s14 s2-m tooltip dot">
+            <p class="tooltiptext" id="s14-t2"></p>
+          </span>
+          <span class="s15 s3-m tooltip dot">
+            <p class="tooltiptext" id="s15-t2"></p>
+          </span>
+      </div>
+    </div>
+
+
   </div>
+    <div id="graphs" class="flex-vertical">
+        <h3 id ="locale-title">Grafer</h3>
+        <div id="highcharts-live-flex"></div>
+        <div id="highcharts-dblookup-flex"></div>
+    </div>
 </div>
+
 </div>
-</div>
+
 </body>
+
 </html>

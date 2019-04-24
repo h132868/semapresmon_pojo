@@ -1,89 +1,84 @@
-.red {color:red}
-.orange {color:orange}
-.green {color:green}
-
 :root {
-    --offset_top: 100px;
-    --offset_left: 100px;
-    --led_offset_top : calc(var(--offset_top) - 75px);
-}
-
-
-
-
-body {
-    background: white;
-    padding: 20px;
-    font-family: "Comic Sans MS";
-}
-
-.sensor_container {
-    background: cornflowerblue;
-    border-radius: 20px;
-    font-size: 18px;
-    text-align: center;
-    transition: all 0.2s;
-    margin: 0 auto;
-    width: 700px;
-    padding: 20px 20px 20px;
-}
-
-#header {
-    padding-bottom: 50px;
-}
-
-
-#sensor_flex {
-    display: flex;
-    height : 1200px;
-    justify-content: space-evenly;
-}
-
-#sensor_list {
-    flex: 1;
-    justify-content: center;
-    padding:auto;
-    max-width: 300px;
-}
-
-.spacer {
-    flex-grow: 1;
-}
-
-#sensor_map {
-    flex: 1;
+    --frame-image-width : 105px;
+    --led-offset:12px;
 }
 
 #locale-title {
-    font-size: 30px;
+    font-size: 1.5em;
+}
+#header {
+    margin: 0.75em;
 }
 
-button {
-    background: #0084ff;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 14px;
-    font-size: 15px;
-    color: #fff;
+footer {
+    display:    block;
+    text-align: center;
 }
 
-#banner-message.alt {
-    background: #0084ff;
-    color: #fff;
-    margin-top: 40px;
-    width: 200px;
+body {
+    background: #bccad6;
+    padding: 0.5em;
+    font-family: "Helvetica", serif;
 }
 
-#banner-message.alt button {
-    background: #fff;
-    color: #000;
+
+
+.all-content {
+    background: #8d9db6;
+    border-radius: 20px;
+    font-size: 1em;
+    transition: all 0.2s;
+    text-align: center;
+    padding: 5px 5px 5px;
+}
+
+
+.flex-container {
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    align-content :flex-start;
+    align-items: stretch;
+}
+
+.flex-vertical {
+    display:flex;
+    flex-direction:column;
+    margin: 0.75em;
+    min-width: 450px;
+    background: #667292;
+    border-radius: 1.5em;
+    flex:auto;
+}
+#sensor-flex-container {
+    display: flex;
+}
+
+#sensor-list {
+    flex: initial;
+    min-width: 230px;
+    margin: 0.75em;
+    background: #667292;
+    border-radius: 1.5em;
+    flex-grow:1;
+}
+
+#sensor-map {
+    flex: initial;
+    margin: 0.75em;
+    background: #667292;
+    border-radius: 1.5em;
+    flex-grow: 1;
+    min-width: calc(var(--frame-image-width) + 2* var(--led-offset) + 1.5em);
+}
+#sensor-map {
+    position:relative;
 }
 
 /* Tooltip container */
 .tooltip {
     position: relative;
     display: block;
-//border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
 
 /* Tooltip text */
@@ -92,284 +87,78 @@ button {
     width: 120px;
     background-color: black;
     color: #fff;
-    text-align: center;
-    font-size: 12px;
+    font-size: 0.75em;
     padding: 5px 0;
     border-radius: 6px;
 
     /* Position the tooltip text */
     position: absolute;
     z-index: 1;
-    top: -5px;
-    right: 105%;
+    top: 10px;
+    left: 50%;
 }
-
 
 /* Show the tooltip text when you mouse over the tooltip container */
 .tooltip:hover .tooltiptext {
+
     visibility: visible;
 }
 
-.sensor0 {
-    display: flex;
-}
-
-.sensor1 {
-    display: flex;
-}
-
-.sensor2 {
-    display: flex;
-}
-
-.sensor3 {
-    display: flex;
-}
-
-.sensor4 {
-    display: flex;
-}
-
-.sensor5 {
-    display: flex;
-}
-
-.sensor6 {
-    display: flex;
-}
-
-.sensor7 {
-    display: flex;
-}
-
-.sensor8 {
-    display: flex;
-}
-
-.sensor9 {
-    display: flex;
-}
-
-.sensor10 {
-    display: flex;
-}
-
-.sensor11 {
-    display: flex;
-}
-
-.sensor12 {
-    display: flex;
-}
-
-.sensor13 {
-    display: flex;
-}
-
-.sensor14 {
-    display: flex;
-}
-
-.sensor15 {
-    display: flex;
-}
-
-.sensor16 {
-    display: flex;
-}
-
-.sensor17 {
-    display: flex;
-}
-
-.sensor18 {
-    display: flex;
-}
-
-.sensor19 {
-    display: flex;
-}
-
-.sensor20 {
-    display: flex;
-}
-
-.sensor21 {
-    display: flex;
-}
-
-.sensor22 {
-    display: flex;
-}
-
-.sensor23 {
-    display: flex;
-}
-
-.sensor24 {
-    display: flex;
-}
-
-.sensor25 {
-    display: flex;
-}
-
-.sensor26 {
-    display: flex;
-}
-
-.sensor27 {
-    display: flex;
-}
-
-.sensor28 {
-    display: flex;
-}
-
-.sensor29 {
-    display: flex;
-}
-
-#sensor_map {
+.frame {
+    z-index: 0;
     position:relative;
-}
-#sensor0_ind {
-    top:  calc(var(--led_offset_top) + 0px);
-    left: 0px;
-    position: absolute;
-    z-index: 2;
+    height: var(--frame-image-width);
+    width:  var(--frame-image-width);
+    margin: var(--led-offset) var(--led-offset) 2em;
 
 }
-#sensor1_ind {
-    top:  calc(var(--led_offset_top) + 0px);
-    left: 200px;
-    position:absolute;
-    z-index: 2;
+.frame-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
 }
-#sensor2_ind {
-    top:  calc(var(--led_offset_top) + 200px);
-    left: 0px;
-    position: absolute;
-    z-index: 2;
 
+.sensors {
+    visibility: hidden;
 }
-#sensor3_ind {
-    top:  calc(var(--led_offset_top) + 200px);
-    left: 200px;
+.s0-m {
     position:absolute;
-    z-index: 2;
+    left: 0;
+    top: 0;
 }
-#sensor4_ind {
-    top:  calc(var(--led_offset_top) + 250px);
-    left: 0px;
+.s1-m {
     position: absolute;
-    z-index: 2;
-
+    right: calc(-2* var(--led-offset));
+    top: 0;
 }
-#sensor5_ind {
-    top:  calc(var(--led_offset_top) + 250px);
-    left: 200px;
-    position:absolute;
-    z-index: 2;
-}
-#sensor6_ind {
-    top:  calc(var(--led_offset_top) + 450px);
-    left: 0px;
+.s2-m {
     position: absolute;
-    z-index: 2;
-
+    top: var(--frame-image-width);
+    left: 0;
 }
-#sensor7_ind {
-    top:  calc(var(--led_offset_top) + 450px);
-    left: 200px;
-    position:absolute;
-    z-index: 2;
-}
-#sensor8_ind {
-    top:  calc(var(--led_offset_top) + 500px);
-    left: 0px;
+.s3-m {
     position: absolute;
-    z-index: 2;
+    top: var(--frame-image-width);
+    right: calc(-2* var(--led-offset));
+}
 
+#highcharts-dblookup-flex {
+    flex : auto;
+    flex-grow:6;
+    margin: 20px;
+    min-height: 220px;
 }
-#sensor9_ind {
-    top:  calc(var(--led_offset_top) + 500px);
-    left: 200px;
-    position:absolute;
-    z-index: 2;
-}
-#sensor10_ind {
-    top:  calc(var(--led_offset_top) + 700px);
-    left: 0px;
-    position: absolute;
-    z-index: 2;
 
+#highcharts-live-flex {
+    flex : auto;
+    flex-grow:6;
+    margin: 20px;
+    min-height:220px;
 }
-#sensor11_ind {
-    top:  calc(var(--led_offset_top) + 700px);
-    left: 200px;
-    position:absolute;
-    z-index: 2;
-}
-#sensor12_ind {
-    top:  calc(var(--led_offset_top) + 750px);
-    left: 0px;
-    position: absolute;
-    z-index: 2;
 
-}
-#sensor13_ind {
-    top:  calc(var(--led_offset_top) + 750px);
-    left: 200px;
-    position:absolute;
-    z-index: 2;
-}
-#sensor14_ind {
-    top:  calc(var(--led_offset_top) + 950px);
-    left: 0px;
-    position: absolute;
-    z-index: 2;
-
-}
-#sensor15_ind {
-    top:  calc(var(--led_offset_top) + 950px);
-    left: 200px;
-    position:absolute;
-    justify-content: left;
-    z-index: 2;
-}
 .dot {
     height: 25px;
     width: 25px;
     background-color: #bbb;
     border-radius: 50%;
-}
-
-#frame1 {
-    top:calc(var(--offset_top) + 750px);
-    left:12px;
-    z-index: 0;
-    position:absolute;
-
-}
-#frame2 {
-    top:calc(var(--offset_top) + 500px);
-    left:12px;
-    z-index: 0;
-    position:absolute;
-
-}
-#frame3 {
-    top:calc(var(--offset_top) + 250px);
-    left:12px;
-    z-index: 0;
-    position:absolute;
-
-}
-#frame4 {
-    top:calc(var(--offset_top) + 0px);
-    left:12px;
-    z-index: 0;
-    position:absolute;
-
 }

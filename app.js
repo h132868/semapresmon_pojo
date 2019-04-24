@@ -1,50 +1,52 @@
-
 const customer = "Grieg Seafood Rogaland";
 const locale = "stjernelaks";
 const numOfSensors = 20;
-var gotJSON = [];
+
+const gotJSON = [];
+const liveTopics = [];
+let liveChart;
+let dbChart;
+
 
 $( document ).ready(function() {
     $("#locale-title").html(customer + ": " +  locale.charAt(0).toUpperCase() + locale.slice(1));
 });
 
-// Create a client instance
-var client = new Paho.MQTT.Client("m24.cloudmqtt.com", 36821,"web_" + parseInt(Math.random() * 100, 10));
-
+//MQTT PART
+// Create a dbClient instance
+let mqttClient = new Paho.MQTT.Client("m24.cloudmqtt.com", 36821, "web_" + parseInt(Math.random() * 100, 10));
 
 // set callback handlers
-client.onConnectionLost = onConnectionLost;
-client.onMessageArrived = onMessageArrived;
-var options = {
+mqttClient.onConnectionLost = onConnectionLost;
+mqttClient.onMessageArrived = onMessageArrived;
+const options = {
     useSSL: true,
     userName: "pornkawy",
     password: "ELBK_4cc5nGY",
-    onSuccess:onConnect,
-    onFailure:doFail
-}
+    onSuccess: onConnect,
+    onFailure: doFail
+};
 
-// connect the client
-client.connect(options);
+// connect the dbClient
+mqttClient.connect(options);
 
-// called when the client connects
+// called when the dbClient connects
 function onConnect() {
     // Once a connection has been made, make a subscription and send a message.
     console.log("onConnect");
 
-    for (i=0;i<numOfSensors;i++) {
-        client.subscribe("pressure/"+ locale + "/sensor" + i);
+    for (let i=0;i<numOfSensors;i++) {
+        mqttClient.subscribe("pressure/"+ locale + "/sensor" + i,0);
         console.log("Subscribed to " + "pressure/"+ locale + "/sensor" + i);
     }
-    message = new Paho.MQTT.Message("Hello from " + locale + "!");
-    message.destinationName = "pressure/debug";
-    client.send(message);
+    mqttClient.send("pressure/debug","Hello from " + locale + "!",0,false);
 }
 
 function doFail(e){
     console.log(e);
 }
 
-// called when the client loses its connection
+// called when the dbClient loses its connection
 function onConnectionLost(responseObject) {
     if (responseObject.errorCode !== 0) {
         console.log("onConnectionLost:"+responseObject.errorMessage);
@@ -54,35 +56,143 @@ function onConnectionLost(responseObject) {
 // called when a message arrives
 function onMessageArrived(message) {
 
-    console.log("msg arrived");
     let sensorNumber = message.destinationName.match(/\d+/g);
-    console.log(message.destinationName);
-
-    console.log(message.payloadString);
-
-    let dataJSON = JSON.parse(message.payloadString);
-
-    console.log(dataJSON);
     gotJSON[sensorNumber] = JSON.parse(message.payloadString);
     gotJSON[sensorNumber].topic = message.destinationName;
-    console.log(dataJSON);
-    console.log(gotJSON[sensorNumber].reading.val);
-    console.log(gotJSON[sensorNumber].reading.time);
-    console.log(gotJSON[sensorNumber].topic);
 
-    $("#sensor" + sensorNumber + "_t").html("Avlesningstidspunkt: " +gotJSON[sensorNumber].reading.time);
-    $("#sensor" + sensorNumber + "_t2").html("Avlesningstidspunkt: " +gotJSON[sensorNumber].reading.time);
-    $(".sensor" + sensorNumber).css("display","flex")
-    $("#sensor" + sensorNumber).html("Sensor " + sensorNumber + ": " +gotJSON[sensorNumber].reading.val + " kPa");
-    $(".sensor" + sensorNumber).css("display","flex")
+    //Write the hover tooltip for the list TODO: make invisible upon hover if no data
+    $("#s" + sensorNumber + "-t1")
+        .html("Avlesningstidspunkt: " +gotJSON[sensorNumber].time);
+    //Write the hover tooltip for the map  TODO: make invisible upon hover if no data
+    $("#s" + sensorNumber + "-t2")
+        .html("Avlesningstidspunkt: " +gotJSON[sensorNumber].time);
+    // Make the list text visible if a message arrives
+    $("#s" + sensorNumber).css("visibility","visible")
+        .html("Sensor " + sensorNumber + ": " +gotJSON[sensorNumber].val + " kPa");
 
-    if (gotJSON[sensorNumber].reading.val < 98) {
-        $(".sensor" + sensorNumber).css("background-color", "green");
-    } else if (gotJSON[sensorNumber].reading.val < 101) {
-        $(".sensor" + sensorNumber).css("background-color", "yellow");
+
+    if (gotJSON[sensorNumber].val < 98) {
+        $(".s" + sensorNumber).css("background-color", "green");
+    } else if (gotJSON[sensorNumber].val < 101) {
+        $(".s" + sensorNumber).css("background-color", "yellow");
     } else {
-        $(".sensor" + sensorNumber).css("background-color", "red");
+        $(".s" + sensorNumber).css("background-color", "red");
+    }
+    //  LIVE GRAPH PART
+    //  Make sure every data topic gets it's unique data series
+    let liveChartNo = getTopicIdAndCreateSeries(liveChart,liveTopics,message.destinationName);
+    plotData(liveChart, gotJSON[sensorNumber],liveChartNo)
     }
 
+    function getTopicIdAndCreateSeries(chart, topicList, topic) {
+        //check if it is a new topic, if not add it to the array
+        if (topicList.indexOf(topic) < 0) {
 
+            topicList.push(topic); //add new topic to array
+            let y = topicList.indexOf(topic); //get the index no
+
+            //create new data series for the chart
+            let newseries = {
+                id: y,
+                name: topic,
+                data: []
+            };
+            chart.addSeries(newseries); //add the series
+        }
+        return topicList.indexOf(topic);
     }
+
+function getTopicId(topicList, topic) {
+    //check if it is a new topic, if not add it to the array
+    if (topicList.indexOf(topic) < 0) {
+
+        topicList.push(topic); //add new topic to array
+    }
+    return topicList.indexOf(topic);
+}
+
+
+function createSeriesWithData(chart, id, topicList, data) {
+        //create new data series for the chart
+        let newseries = {
+            id: id,
+            name: topicList[id],
+            data: data[id]
+        };
+        chart.addSeries(newseries); //add the series
+}
+
+function plotData(chart, data, chartNo) {
+    let timeGot = new Date(data.time).getTime();
+    let valGot = data.val;
+    let series = chart.series[chartNo],
+        shift = series.data.length > 20; // shift if the series is longer than 20
+    // add the point
+    chart.series[chartNo].addPoint([timeGot, parseFloat(valGot)], true, shift);
+}
+
+   //MONGODB GRAPH PART
+
+
+$(function(){
+    liveChart = Highcharts.chart('highcharts-live-flex', {
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'Time'
+        },
+        xAxis: {
+            type: 'datetime'
+        },
+        yAxis: {
+            title: {
+                text: 'Pressure (kPa)'
+            }
+        },
+    });
+});
+
+
+$(function () {
+    let dataSeries = [];
+    let topicList = [];
+    fetch('https://eu-west-1.aws.webhooks.mongodb-stitch.com/api/client/v2.0/app/semapres-charts-dsioa/service/get-chart-data/incoming_webhook/get-day?secret=AcHpa630chDjUg')
+        .then(
+        function (response) {
+            return response.json();
+        }
+    ).then(function (jsonData) {
+        for (let i = 0; i < jsonData.length; i++) {
+            let time = jsonData[i][0].$date.$numberLong;
+            let val = jsonData[i][1].$numberDouble;
+            let topicId = getTopicId(topicList, jsonData[i][2]);
+            if (!Array.isArray(dataSeries[topicId])) {
+                dataSeries[topicId] = [];
+            }
+            dataSeries[topicId].push([parseInt(time),parseFloat(val)]);
+        }
+        for (let i=0; i<topicList.length;i++) {
+            createSeriesWithData(dbChart,i,topicList,dataSeries)
+        }
+    })
+    });
+
+$(function () {
+    dbChart = Highcharts.chart('highcharts-dblookup-flex', {
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'Time'
+        },
+        xAxis: {
+            type: 'datetime'
+        },
+        yAxis: {
+            title: {
+                text: 'Pressure (kPa)'
+            }
+        }
+    })
+});
