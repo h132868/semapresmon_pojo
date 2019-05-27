@@ -1,13 +1,13 @@
 :root {
-    --frame-image-width : 105px;
-    --led-offset:12px;
+    --frame-image-width : 350px;
+    --led-offset:0px;
 }
 
 #locale-title {
     font-size: 1.5em;
 }
 #header {
-    margin: 0.75em;
+    margin : 0.75em;
 }
 
 footer {
@@ -56,7 +56,7 @@ body {
 
 #sensor-list {
     flex: initial;
-    min-width: 230px;
+    min-width: 180px;
     margin: 0.75em;
     background: #667292;
     border-radius: 1.5em;
@@ -69,7 +69,7 @@ body {
     background: #667292;
     border-radius: 1.5em;
     flex-grow: 1;
-    min-width: calc(var(--frame-image-width) + 2* var(--led-offset) + 1.5em);
+    min-width: calc(var(--frame-image-width));
 }
 #sensor-map {
     position:relative;
@@ -104,15 +104,23 @@ body {
     visibility: visible;
 }
 
+.sensor-map-spacer {
+    margin: 8em;
+}
+
 .frame {
     z-index: 0;
     position:relative;
     height: var(--frame-image-width);
     width:  var(--frame-image-width);
-    margin: var(--led-offset) var(--led-offset) 2em;
+    margin: 0;
+    vertical-align: center;
 
 }
 .frame-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
     max-height: 100%;
     max-width: 100%;
     object-fit: contain;
@@ -121,39 +129,88 @@ body {
 .sensors {
     visibility: hidden;
 }
-.s0-m {
-    position:absolute;
-    left: 0;
-    top: 0;
-}
-.s1-m {
+
+#s0-led {
     position: absolute;
-    right: calc(-2* var(--led-offset));
-    top: 0;
+    bottom: calc(var(--frame-image-width)/100*20);
+    left: 160px;
 }
-.s2-m {
+#s1-led {
     position: absolute;
-    top: var(--frame-image-width);
-    left: 0;
+    bottom: calc(var(--frame-image-width)/100*30);
+    left: 185px;
 }
-.s3-m {
+#s2-led {
     position: absolute;
-    top: var(--frame-image-width);
-    right: calc(-2* var(--led-offset));
+    bottom: calc(var(--frame-image-width)/100*30);
+    left: 138px;
 }
+#s3-led {
+    position: absolute;
+    bottom: calc(var(--frame-image-width)/100*53);
+    left: 185px;
+}
+#s4-led {
+    position: absolute;
+    bottom: calc(var(--frame-image-width)/100*53);
+    left: 138px;
+}
+#s5-led {
+    position: absolute;
+    bottom: calc(var(--frame-image-width)/100*60);
+    left: 160px;
+}
+#s6-led {
+    position: absolute;
+    bottom: calc(var(--frame-image-width)/100*66);
+    left: 185px;
+}
+#s7-led {
+    position: absolute;
+    bottom: calc(var(--frame-image-width)/100*66);
+    left: 138px;
+}
+#s8-led {
+    position: absolute;
+    bottom: calc(var(--frame-image-width)/100*89);
+    left: 185px;
+}
+#s9-led {
+    position: absolute;
+    bottom: calc(var(--frame-image-width)/100*89);
+    left: 140px;
+}
+#s10-led {
+     position: absolute;
+    bottom: calc(var(--frame-image-width)/100*95);
+    left: 162px;
+ }
+#s11-led {
+    position: absolute;
+    bottom: calc(var(--frame-image-width)/100*98);
+    right: 25px;
+}
+#s12-led {
+    position: absolute;
+    bottom: calc(var(--frame-image-width)/100*98);
+    left: 25px;
+}
+
 
 #highcharts-dblookup-flex {
     flex : auto;
     flex-grow:6;
     margin: 20px;
-    min-height: 220px;
+    min-height: 450px;
+    min-width: 500px;
 }
 
 #highcharts-live-flex {
     flex : auto;
     flex-grow:6;
     margin: 20px;
-    min-height:220px;
+    min-height:230px;
+    min-width: 400px;
 }
 
 .dot {
@@ -161,4 +218,41 @@ body {
     width: 25px;
     background-color: #bbb;
     border-radius: 50%;
+}
+#bigdata {
+    position:absolute;
+    top: 65px;
+    left: 100px;
+    opacity:0;
+}
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 24px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+}
+
+#dblookup-graph-1h {
+    display: block;
 }

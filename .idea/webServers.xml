@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9ab9f1c8-6949-4546-9b15-0b03b98c2b27" name="Ubuntu Sematek-server" url="http://232717.vps.tornado.no">
+        <fileTransfer host="232717.vps.tornado.no" port="22" rootFolder="/public_html" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

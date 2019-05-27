@@ -12,8 +12,11 @@
 </head>
 <body>
 <div id="foreground" class="all-content">
-<div id="header">
-    <img src="images/logo.png" alt="logo" width="50%">
+<div id="header-row">
+    <div id="bigdata">
+        <img src="images/bigdata.png" alt="bigdata" width="13%">
+    </div>
+    <img  src="images/logo.png" alt="logo" width="50%">
 </div>
 <div id="wrapper" class="flex-container">
 
@@ -98,65 +101,49 @@
 
   <div id="sensor-map">
       <h3>Oversikt</h3>
+      <div class="sensor-map-spacer">
+
+      </div>
       <div class="frame">
-        <img src="images/frame.png" class="frame frame-image" alt="ramme">
-        <span class="s0 s0-m tooltip  dot">
+        <img id="sensor-map-image" src="images/stjernelaks_map.png" class="frame frame-image" alt="ramme">
+        <span id="s0-led" class="s0 s0-m tooltip  dot">
             <p class="tooltiptext" id="s0-t2"></p>
         </span>
-            <span class="s1 s1-m tooltip dot ">
+            <span id="s1-led"  class="s1 s1-m tooltip dot ">
             <p class="tooltiptext" id="s1-t2"></p>
         </span>
-            <span class="s2 s2-m tooltip  dot">
+            <span id="s2-led"  class="s2 s2-m tooltip  dot">
             <p class="tooltiptext" id="s2-t2"></p>
         </span>
-            <span class="s3 s3-m tooltip  dot">
+            <span id="s3-led"  class="s3 s3-m tooltip  dot">
             <p class="tooltiptext" id="s3-t2"></p>
         </span>
-      </div>
-
-      <div class="frame">
-          <img src="images/frame.png" class="frame frame-image" alt="ramme">
-          <span class="s4 s0-m tooltip dot">
+          <span id="s4-led"  class="s4 s0-m tooltip dot">
             <p class="tooltiptext" id="s4-t2"></p>
           </span>
-          <span class="s5 s1-m tooltip dot">
+          <span id="s5-led"  class="s5 s1-m tooltip dot">
             <p class="tooltiptext" id="s5-t2"></p>
           </span>
-          <span class="s6 s2-m tooltip dot">
+          <span id="s6-led"  class="s6 s2-m tooltip dot">
             <p class="tooltiptext" id="s6-t2"></p>
           </span>
-          <span class="s7 s3-m tooltip dot">
+          <span id="s7-led"  class="s7 s3-m tooltip dot">
             <p class="tooltiptext" id="s7-t2"></p>
           </span>
-      </div>
-      <div class="frame">
-          <img src="images/frame.png" class="frame frame-image" alt="ramme">
-          <span class="s8 s0-m tooltip dot">
+          <span id="s8-led"  class="s8 s0-m tooltip dot">
             <p class="tooltiptext" id="s8-t2"></p>
           </span>
-          <span class="s9 s1-m tooltip dot">
+          <span id="s9-led"  class="s9 s1-m tooltip dot">
             <p class="tooltiptext" id="s9-t2"></p>
           </span>
-          <span class="s10 s2-m tooltip dot">
+          <span id="s10-led"  class="s10 s2-m tooltip dot">
             <p class="tooltiptext" id="s10-t2"></p>
           </span>
-          <span class="s11 s3-m tooltip dot">
+          <span id="s11-led"  class="s11 s3-m tooltip dot">
             <p class="tooltiptext" id="s11-t2"></p>
           </span>
-      </div>
-      <div class="frame">
-          <img src="images/frame.png" class="frame frame-image" alt="ramme">
-          <span class="s12 s0-m tooltip dot">
+          <span id="s12-led"  class="s12 s0-m tooltip dot">
             <p class="tooltiptext" id="s12-t2"></p>
-          </span>
-          <span class="s13 s1-m tooltip dot">
-            <p class="tooltiptext" id="s13-t2"></p>
-          </span>
-          <span class="s14 s2-m tooltip dot">
-            <p class="tooltiptext" id="s14-t2"></p>
-          </span>
-          <span class="s15 s3-m tooltip dot">
-            <p class="tooltiptext" id="s15-t2"></p>
           </span>
       </div>
     </div>
@@ -166,12 +153,34 @@
     <div id="graphs" class="flex-vertical">
         <h3 id ="locale-title">Grafer</h3>
         <div id="highcharts-live-flex"></div>
-        <div id="highcharts-dblookup-flex"></div>
     </div>
+        <div id="dblookup-graph" class="flex-vertical">
+            <div class="tab">
+                <button id="dblookup-graph-1h-btn" class="tablinks" onclick="openTab(event, 'dblookup-graph-1h'), generateHourGraph()">1 time</button>
+                <button id="dblookup-graph-24h-btn" class="tablinks" onclick="openTab(event, 'dblookup-graph-24h'), generateDayGraph()">24 timer</button>
+                <button id="dblookup-graph-1M-btn" class="tablinks" onclick="openTab(event, 'dblookup-graph-1M'), generateMonthGraph()">1 måned</button>
+            </div>
+            <div id="dblookup-graph-24h" class="tabcontent">
+                <h3>Siste 24 timer</h3>
+                <div id="highcharts-db-24h"></div>
+            </div>
+            <div id="dblookup-graph-1h" class="tabcontent">
+                <h3>Siste time</h3>
+                <div id="highcharts-db-1h"></div>
+            </div>
+            <div id="dblookup-graph-1M" class="tabcontent">
+                <h3>Siste måned</h3>
+                <div id="highcharts-db-1M"></div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 </div>
+<script>document.getElementById("dblookup-graph-1h-btn").click();</script>
 
 </body>
 
 </html>
+

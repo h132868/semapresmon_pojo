@@ -5,11 +5,12 @@ const numOfSensors = 20;
 const gotJSON = [];
 const liveTopics = [];
 let liveChart;
-let dbChart;
+let dbChart24h, dbChart1h, dbChart1M;
 
 
 $( document ).ready(function() {
     $("#locale-title").html(customer + ": " +  locale.charAt(0).toUpperCase() + locale.slice(1));
+
 });
 
 //MQTT PART
@@ -36,8 +37,8 @@ function onConnect() {
     console.log("onConnect");
 
     for (let i=0;i<numOfSensors;i++) {
-        mqttClient.subscribe("pressure/"+ locale + "/sensor" + i,0);
-        console.log("Subscribed to " + "pressure/"+ locale + "/sensor" + i);
+        mqttClient.subscribe("pressure/"+ locale + "/s" + i,0);
+        console.log("Subscribed to " + "pressure/"+ locale + "/s" + i);
     }
     mqttClient.send("pressure/debug","Hello from " + locale + "!",0,false);
 }
@@ -154,12 +155,16 @@ $(function(){
 });
 
 
-$(function () {
+
+//graph for last day
+function generateDayGraph() {
+    console.log("starting fetch day");
     let dataSeries = [];
     let topicList = [];
     fetch('https://eu-west-1.aws.webhooks.mongodb-stitch.com/api/client/v2.0/app/semapres-charts-dsioa/service/get-chart-data/incoming_webhook/get-day?secret=AcHpa630chDjUg')
         .then(
         function (response) {
+            console.log("ending fetch day");
             return response.json();
         }
     ).then(function (jsonData) {
@@ -173,13 +178,15 @@ $(function () {
             dataSeries[topicId].push([parseInt(time),parseFloat(val)]);
         }
         for (let i=0; i<topicList.length;i++) {
-            createSeriesWithData(dbChart,i,topicList,dataSeries)
+            createSeriesWithData(dbChart24h,i,topicList,dataSeries)
         }
     })
-    });
+    console.log("done making graph day");
+
+};
 
 $(function () {
-    dbChart = Highcharts.chart('highcharts-dblookup-flex', {
+    dbChart24h = Highcharts.chart('highcharts-db-24h', {
         chart: {
             zoomType: 'x'
         },
@@ -196,3 +203,125 @@ $(function () {
         }
     })
 });
+
+//graph for last month
+function generateMonthGraph() {
+    let dataSeries = [];
+    let topicList = [];
+    console.log("starting fetch month");
+    fetch('https://eu-west-1.aws.webhooks.mongodb-stitch.com/api/client/v2.0/app/semapres-charts-dsioa/service/get-chart-data/incoming_webhook/get-month?secret=I-5N9t0m1gUlFYB')
+        .then(
+            function (response) {
+                console.log("ending fetch month");
+                return response.json();
+            }
+        ).then(function (jsonData) {
+        for (let i = 0; i < jsonData.length; i++) {
+            let time = jsonData[i][0].$date.$numberLong;
+            let val = jsonData[i][1].$numberDouble;
+            let topicId = getTopicId(topicList, jsonData[i][2]);
+            if (!Array.isArray(dataSeries[topicId])) {
+                dataSeries[topicId] = [];
+            }
+            dataSeries[topicId].push([parseInt(time),parseFloat(val)]);
+        }
+        for (let i=0; i<topicList.length;i++) {
+            createSeriesWithData(dbChart1M,i,topicList,dataSeries)
+        }
+        console.log("done making graph month");
+    })
+};
+
+$(function () {
+    dbChart1M = Highcharts.chart('highcharts-db-1M', {
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'Time'
+        },
+        xAxis: {
+            type: 'datetime'
+        },
+        yAxis: {
+            title: {
+                text: 'Pressure (kPa)'
+            }
+        }
+    })
+});
+
+
+//Graph for last hour
+function generateHourGraph() {
+    let dataSeries = [];
+    let topicList = [];
+    console.log("starting fetch hour");
+    fetch('https://eu-west-1.aws.webhooks.mongodb-stitch.com/api/client/v2.0/app/semapres-charts-dsioa/service/get-chart-data/incoming_webhook/get-hour?secret=o`P\'Y168thD2l9D')
+     .then(
+            function (response) {
+                console.log("ending fetch hour");
+                return response.json();
+            }
+        ).then(function (jsonData) {
+        for (let i = 0; i < jsonData.length; i++) {
+            let time = jsonData[i][0].$date.$numberLong;
+            let val = jsonData[i][1].$numberDouble;
+            let topicId = getTopicId(topicList, jsonData[i][2]);
+            if (!Array.isArray(dataSeries[topicId])) {
+                dataSeries[topicId] = [];
+            }
+            dataSeries[topicId].push([parseInt(time),parseFloat(val)]);
+        }
+        for (let i=0; i<topicList.length;i++) {
+            createSeriesWithData(dbChart1h,i,topicList,dataSeries)
+        }
+    })
+    console.log("done making graph hour");
+};
+
+$(function () {
+    dbChart1h = Highcharts.chart('highcharts-db-1h', {
+        chart: {
+            zoomType: 'x'
+        },
+        title: {
+            text: 'Time'
+        },
+        xAxis: {
+            type: 'datetime'
+        },
+        yAxis: {
+            title: {
+                text: 'Pressure (kPa)'
+            }
+        }
+    })
+});
+
+function show(id) {
+    document.getElementById(id).style.visibility = "visible";
+}
+function hide(id) {
+    document.getElementById(id).style.visibility = "hidden";
+}
+function openTab(evt, tabName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
