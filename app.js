@@ -66,10 +66,10 @@ function onMessageArrived(message) {
         .html("Avlesningstidspunkt: " +gotJSON[sensorNumber].time);
     //Write the hover tooltip for the map  TODO: make invisible upon hover if no data
     $("#s" + sensorNumber + "-t2")
-        .html("Avlesningstidspunkt: " +gotJSON[sensorNumber].time);
+        .html("Sensor S" + sensorNumber + "\nAvlesningstidspunkt: " +gotJSON[sensorNumber].time);
     // Make the list text visible if a message arrives
     $("#s" + sensorNumber).css("visibility","visible")
-        .html("Sensor " + sensorNumber + ": " +gotJSON[sensorNumber].val + " kPa");
+        .html("Sensor " + sensorNumber + ": " +((gotJSON[sensorNumber].val/100)-1).toFixed(3) + " bar");
 
 
     if (gotJSON[sensorNumber].val < 98) {
@@ -129,7 +129,7 @@ function plotData(chart, data, chartNo) {
     let series = chart.series[chartNo],
         shift = series.data.length > 20; // shift if the series is longer than 20
     // add the point
-    chart.series[chartNo].addPoint([timeGot, parseFloat(valGot)], true, shift);
+    chart.series[chartNo].addPoint([timeGot, parseFloat(valGot)/100-1], true, shift);
 }
 
    //MONGODB GRAPH PART
@@ -148,9 +148,13 @@ $(function(){
         },
         yAxis: {
             title: {
-                text: 'Pressure (kPa)'
+                text: 'Pressure (bar)'
             }
         },
+        tooltip: {
+            valueDecimals: 2,
+            valueSuffix: 'bar'
+        }
     });
 });
 
@@ -175,20 +179,20 @@ function generateDayGraph() {
             if (!Array.isArray(dataSeries[topicId])) {
                 dataSeries[topicId] = [];
             }
-            dataSeries[topicId].push([parseInt(time),parseFloat(val)]);
+            dataSeries[topicId].push([parseInt(time),(parseFloat(val)/100)-1]);
         }
         for (let i=0; i<topicList.length;i++) {
             createSeriesWithData(dbChart24h,i,topicList,dataSeries)
         }
-    })
+    });
     console.log("done making graph day");
-
-};
+}
 
 $(function () {
     dbChart24h = Highcharts.chart('highcharts-db-24h', {
         chart: {
-            zoomType: 'x'
+            zoomType: 'x',
+            height: 550
         },
         title: {
             text: 'Time'
@@ -198,8 +202,12 @@ $(function () {
         },
         yAxis: {
             title: {
-                text: 'Pressure (kPa)'
+                text: 'Pressure (bar)'
             }
+        },
+        tooltip: {
+            valueDecimals: 2,
+            valueSuffix: ' bar'
         }
     })
 });
@@ -223,7 +231,7 @@ function generateMonthGraph() {
             if (!Array.isArray(dataSeries[topicId])) {
                 dataSeries[topicId] = [];
             }
-            dataSeries[topicId].push([parseInt(time),parseFloat(val)]);
+            dataSeries[topicId].push([parseInt(time),parseFloat(val)/100-1]);
         }
         for (let i=0; i<topicList.length;i++) {
             createSeriesWithData(dbChart1M,i,topicList,dataSeries)
@@ -235,18 +243,23 @@ function generateMonthGraph() {
 $(function () {
     dbChart1M = Highcharts.chart('highcharts-db-1M', {
         chart: {
-            zoomType: 'x'
+            zoomType: 'x',
+            height: 550
         },
         title: {
-            text: 'Time'
+            text: 'Tid'
         },
         xAxis: {
             type: 'datetime'
         },
         yAxis: {
             title: {
-                text: 'Pressure (kPa)'
-            }
+            text: 'Trykk (bar)'
+        },
+        tooltip: {
+            valueDecimals: 2,
+            valueSuffix: ' bar'
+        }
         }
     })
 });
@@ -271,7 +284,7 @@ function generateHourGraph() {
             if (!Array.isArray(dataSeries[topicId])) {
                 dataSeries[topicId] = [];
             }
-            dataSeries[topicId].push([parseInt(time),parseFloat(val)]);
+            dataSeries[topicId].push([parseInt(time),parseFloat(val)/100-1]);
         }
         for (let i=0; i<topicList.length;i++) {
             createSeriesWithData(dbChart1h,i,topicList,dataSeries)
@@ -283,18 +296,23 @@ function generateHourGraph() {
 $(function () {
     dbChart1h = Highcharts.chart('highcharts-db-1h', {
         chart: {
-            zoomType: 'x'
+            zoomType: 'x',
+            height: 550
         },
         title: {
-            text: 'Time'
+            text: 'Tid'
         },
         xAxis: {
             type: 'datetime'
         },
         yAxis: {
             title: {
-                text: 'Pressure (kPa)'
+                text: 'Trykk (bar)'
             }
+        },
+        tooltip: {
+            valueDecimals: 2,
+            valueSuffix: ' bar'
         }
     })
 });

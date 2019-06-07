@@ -52,6 +52,8 @@ body {
 }
 #sensor-flex-container {
     display: flex;
+    z-index: 1;
+
 }
 
 #sensor-list {
@@ -93,7 +95,6 @@ body {
 
     /* Position the tooltip text */
     position: absolute;
-    z-index: 1;
     top: 10px;
     left: 50%;
 }
@@ -201,7 +202,6 @@ body {
     flex : auto;
     flex-grow:6;
     margin: 20px;
-    min-height: 450px;
     min-width: 500px;
 }
 
@@ -209,7 +209,7 @@ body {
     flex : auto;
     flex-grow:6;
     margin: 20px;
-    min-height:230px;
+    min-height:300px;
     min-width: 400px;
 }
 
@@ -219,12 +219,7 @@ body {
     background-color: #bbb;
     border-radius: 50%;
 }
-#bigdata {
-    position:absolute;
-    top: 65px;
-    left: 100px;
-    opacity:0;
-}
+
 /* Style the buttons inside the tab */
 .tab button {
     background-color: inherit;
@@ -251,8 +246,12 @@ body {
 .tabcontent {
     display: none;
     padding: 6px 12px;
+    height: 630px;
 }
 
 #dblookup-graph-1h {
     display: block;
+}
+#graphs {
+    z-index: 0;
 }
